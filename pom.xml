@@ -12,6 +12,7 @@
 	<modules>
 		<module>zuul-dynamic-routing</module>
 		<module>first-targeted-service</module>
+		<module>second-targeted-service</module>
 	</modules>
 
 	<parent>
