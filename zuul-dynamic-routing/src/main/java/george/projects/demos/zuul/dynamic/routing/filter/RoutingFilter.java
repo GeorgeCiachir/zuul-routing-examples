@@ -6,6 +6,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -57,20 +58,20 @@ public class RoutingFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext requestContext = RequestContext.getCurrentContext();
 
-		requestContext.setRouteHost(determineRouteHost(requestContext));
+		requestContext.setRouteHost(determineRouteHost(requestContext.getRequestQueryParams()));
 		requestContext.remove(FORWARD_TO_KEY);
 		requestContext.put(REQUEST_URI_KEY, requestContext.getRequest().getRequestURI());
 
 		return null;
 	}
 
-	private URL determineRouteHost(RequestContext requestContext) {
-		List<String> serviceParams = requestContext.getRequestQueryParams().get(SERVICE_PARAM);
-
-		if (serviceParams == null) {
+	private URL determineRouteHost(Map<String, List<String>> requestParams) {
+		if (requestParams == null) {
 			return settings.getStaticUrl();
 		}
 
-		return settings.getServiceUrl(serviceParams.get(0));
+		List<String> serviceParams = requestParams.get(SERVICE_PARAM);
+
+		return (serviceParams != null) ? settings.getServiceUrl(serviceParams.get(0)) : settings.getStaticUrl();
 	}
 }

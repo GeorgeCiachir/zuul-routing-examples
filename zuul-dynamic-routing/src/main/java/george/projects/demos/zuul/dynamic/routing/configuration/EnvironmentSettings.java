@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -39,7 +40,7 @@ public class EnvironmentSettings {
 	}
 
 	private URL createTargetedServiceUrl(String serviceName) {
-		checkArgument(serviceName != null, "Service name must be provided");
+		checkArgument(StringUtils.isNotEmpty(serviceName), "Service name must be provided as a request parameter");
 
 		String dynamicUrl = environment.getProperty("dynamic.routing.variables." + serviceName);
 		try {
