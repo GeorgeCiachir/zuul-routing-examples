@@ -14,15 +14,15 @@ import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 @EnableZuulProxy
 @SpringBootApplication
-public class ZuulDynamicRoutingApplication extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZuulDynamicRoutingApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ZuulDynamicRoutingApplication.class);
+		return application.sources(Application.class);
 	}
 
 	@Bean

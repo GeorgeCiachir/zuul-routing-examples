@@ -10,6 +10,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>zuul-dynamic-routing</module>
+		<module>first-targeted-service</module>
 	</modules>
 
 	<parent>
