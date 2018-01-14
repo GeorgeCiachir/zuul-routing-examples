@@ -31,7 +31,7 @@ public class LoggingFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext context = RequestContext.getCurrentContext();
 
-		LOG.info("Request URL: {}", context.getRequest().getRequestURI());
+		LOG.info("Request URI: {}", context.getRequest().getRequestURI());
 
 		return null;
 	}
