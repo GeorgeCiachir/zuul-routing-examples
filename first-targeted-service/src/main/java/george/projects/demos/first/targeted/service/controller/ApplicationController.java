@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ApplicationController {
 
 	@ResponseBody
-	@RequestMapping(value = "/firstTargetedService")
+	@RequestMapping(value = "/")
 	public String respond() {
 		return "Response from the First Service";
 	}
