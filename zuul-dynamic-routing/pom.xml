@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>zuul-dynamic-routing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>${parent.version}</version>
+	<packaging>${packaging.type}</packaging>
 
 	<name>zuul-dynamic-routing</name>
 
@@ -69,6 +69,9 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<properties>
+				<packaging.type>jar</packaging.type>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
@@ -79,6 +82,9 @@
 		</profile>
 		<profile>
 			<id>Tomcat</id>
+			<properties>
+				<packaging.type>war</packaging.type>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
