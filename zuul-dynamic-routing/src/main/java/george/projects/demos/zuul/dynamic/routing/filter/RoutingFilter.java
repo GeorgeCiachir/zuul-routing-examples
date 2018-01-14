@@ -1,4 +1,4 @@
-package george.projects.demos.zuul.dynamic.routing.filters;
+package george.projects.demos.zuul.dynamic.routing.filter;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORWARD_TO_KEY;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_DECORATION_FILTER_ORDER;

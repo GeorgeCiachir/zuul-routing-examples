@@ -1,4 +1,4 @@
-package george.projects.demos.zuul.dynamic.routing.exceptions;
+package george.projects.demos.zuul.dynamic.routing.exception;
 
 public class InvalidUrlException extends RuntimeException {
 

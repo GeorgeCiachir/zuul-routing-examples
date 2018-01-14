@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import george.projects.demos.zuul.dynamic.routing.exceptions.InvalidUrlException;
+import george.projects.demos.zuul.dynamic.routing.exception.InvalidUrlException;
 
 @Component
 @ConfigurationProperties(prefix = "dynamic.routing.variables")
