@@ -1,5 +1,7 @@
 package george.projects.demos.zuul.dynamic.routing.configuration;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -9,13 +11,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import george.projects.demos.zuul.dynamic.routing.exception.InvalidUrlException;
+import george.projects.demos.zuul.dynamic.routing.exception.InvalidUrlFormatException;
 
 @Component
 @ConfigurationProperties(prefix = "dynamic.routing.variables")
 public class EnvironmentSettings {
 
 	private static final Logger LOG = LoggerFactory.getLogger(EnvironmentSettings.class);
+
 	private Environment environment;
 	private URL staticUrl;
 
@@ -31,18 +34,20 @@ public class EnvironmentSettings {
 		this.staticUrl = staticUrl;
 	}
 
-	public URL getTargetedServiceUrl() {
-		return createTargetedServiceUrl();
+	public URL getServiceUrl(String serviceName) {
+		return createTargetedServiceUrl(serviceName);
 	}
 
-	private URL createTargetedServiceUrl() {
-		String dynamicUrl = environment.getProperty("dynamic.routing.variables.targetedServiceUrl");
+	private URL createTargetedServiceUrl(String serviceName) {
+		checkArgument(serviceName != null, "Service name must be provided");
+
+		String dynamicUrl = environment.getProperty("dynamic.routing.variables." + serviceName);
 		try {
 			return new URL(dynamicUrl);
 		} catch (MalformedURLException ex) {
 			String message = String.format("Provided url [%s] does not have a valid format. Please review the property", dynamicUrl);
 			LOG.error(message);
-			throw new InvalidUrlException(message, ex);
+			throw new InvalidUrlFormatException(message, ex);
 		}
 	}
 }
